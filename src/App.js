@@ -82,6 +82,7 @@ function App() {
         />
         <div className="newsletter">
           <input
+            required
             type="checkbox"
             name="newsletter"
             checked={subscription}
