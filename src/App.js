@@ -5,14 +5,21 @@ function App() {
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
-    age: 0,
+    age: undefined,
     email: "",
     newsletter: false,
   });
 
   function handleChange(event) {
-    const { value, name } = event.target;
-    setUserData({ ...userData, [name]: value });
+    const { value, name, type } = event.target;
+    if (value.length < 12) {
+      setUserData({ ...userData, [name]: value });
+    } else {
+      alert("Your name is too long");
+    }
+    if (type === "number") {
+      setUserData({ ...userData, [name]: Number(value) });
+    }
   }
   function handleNewsletterChange(event) {
     const { checked, name } = event.target;
@@ -20,6 +27,9 @@ function App() {
   }
 
   function handleSubmit(event) {
+    if (userData.age < 18) {
+      alert("Sorry, you are too young to sign up");
+    }
     event.preventDefault();
     console.log(userData);
   }
